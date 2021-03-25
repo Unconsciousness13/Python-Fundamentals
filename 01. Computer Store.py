@@ -1,34 +1,37 @@
+prices = input()
 total = 0
-taxes = total * 0.20
-while True:
-    command = input()
-
-    if command == "regular" or command == "special":
+taxes = 0
+total_price = 0
+while not prices == "special" or "regular":
+    if prices == "special":
         if total == 0:
             print("Invalid order!")
             break
-    else:
-        command = float(command)
-        if command < 0:
-            print("Invalid price!")
-        else:
-
-            total += command
-            taxes += command * 0.20
-
-    if command == "special":
-        total_after_discount = total * 0.90
+        total_price *= 0.90
         print("Congratulations you've just bought a new computer!")
         print(f"Price without taxes: {total:.2f}$")
         print(f"Taxes: {taxes:.2f}$")
         print("-----------")
-        print(f"Total price: {total_after_discount + (taxes * 0.90):.2f}$")
+        print(f"Total price: {total_price:.2f}$")
         break
 
-    elif command == "regular":
+    elif prices == "regular":
+        if total == 0:
+            print("Invalid order!")
+            break
         print("Congratulations you've just bought a new computer!")
         print(f"Price without taxes: {total:.2f}$")
         print(f"Taxes: {taxes:.2f}$")
         print("-----------")
-        print(f"Total price: {total + taxes:.2f}$")
+        print(f"Total price: {total_price:.2f}$")
         break
+    number = float(prices)
+    if float(prices) < 0:
+        print("Invalid price!")
+        total -= number
+
+    total += number
+    taxes = total * 0.2
+    total_price = total + taxes
+
+    prices = input()
